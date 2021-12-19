@@ -1,0 +1,41 @@
+====== Th (4200) into UO2                       =======
+        SRIM-2008.04
+=======================================
+      Data  of  TRIM  Calculation      
+=======================================
+====== TRIM Calc.= Th(70 keV) ==> UO2(  600 A) ===============================
+------------------------------------------------------------------------------
+Ion = Th (90)   Ion Mass= 232.0380
+Energy  = 7000000.E-05 keV
+Ion Angle to Surface = 0 degrees
+============= TARGET MATERIAL ======================================
+  Layer # 1 - UO2
+  Layer # 1 - Bottom Depth=     6.E+02 A
+  Layer # 1- Density = 7.332E22 atoms/cm3 = 10.96 g/cm3
+  Layer # 1-  O = 66.6 Atomic Percent = 5.92 Mass Percent
+  Layer # 1-  U = 33.3 Atomic Percent = 44.0 Mass Percent
+====================================================================
+Target energies for target atom =  O
+    Displacement = 20 eV, Binding = 3 eV, Surface = 2 eV
+Target energies for target atom =  U
+    Displacement = 40 eV, Binding = 3 eV, Surface = 5.42 eV
+====================================================================
+Depth Range of Tabulated Data=  000000.E+00  -  600000.E-03  Angstroms
+====================================================================
+Total Ions calculated =  001453
+Average Range         =   14556.E-02 Angstroms
+Average Straggling    =   66770.E-03 Angstroms
+Average Vacancy/Ion   =   10387.E-01
+====================================================================
+Total Backscattered Ions=  10 
+Total Transmitted Ions  =  0 
+====================================================================
+See files SRIM Outputs\*.txt for tables :
+   TDATA.txt    -- Details of the calculation.
+   RANGE.txt    -- Final distribution of Ions/Recoils
+   VACANCY.txt  -- Distribution of Vacancies
+   IONIZ.txt    -- Distribution of Ionization
+   PHONON.txt   -- Distribution of Phonons
+   E2RECOIL.txt -- Energy transferred to recoils
+   NOVAC.txt    -- Replacement collisions
+   LATERAL.txt  -- Lateral Spread of Ions
