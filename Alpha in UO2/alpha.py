@@ -26,7 +26,7 @@ linestyles = lss = [
 plt.rcParams.update({'font.size': 14})
 N = 10000
 fluence = 1e+16 #cm-2
-modify_range = True
+modify_range = False
 res_path = os.path.realpath(__file__)
 # print(res_path+'\srim_output')
 data = Results('C:\\Users\\Mathis\\Desktop\\TP_SRIM\\Alpha in UO2\\srim_output')
