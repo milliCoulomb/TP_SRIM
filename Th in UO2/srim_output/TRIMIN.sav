@@ -1,10 +1,10 @@
-==> SRIM-2008.04 This file controls TRIM Calculations.
+==> SRIM-2013.00 This file controls TRIM Calculations.
 Ion: Z1 ,  M1,  Energy (keV), Angle,Number,Bragg Corr,AutoSave Number.
-    90 234.038         70       0   10000        0     1000
+    90 234.038         70       0   10000        1     2000
 Cascades(1=No;2=Full;3=Sputt;4-5=Ions;6-7=Neutrons), Random Number Seed, Reminders
                       2                                   0       0
 Diskfiles (0=no,1=yes): Ranges, Backscatt, Transmit, Sputtered, Collisions(1=Ion;2=Ion+Recoils), Special EXYZ.txt file
-                          1       1           0       0               0                               0
+                          1       1           1       1               2                               0
 Target material : Number of Elements & Layers
 "Th (70) into UO2                        "       2               1
 PlotType (0-5); Plot Depths: Xmin, Xmax(Ang.) [=0 0 for Viewing Full Target]
@@ -25,5 +25,5 @@ Individual target atom lattice binding energies (eV)
        3       3
 Individual target atom surface binding energies (eV)
     5.42       2
-Stopping Power Version (1=2008, 0=2008)
+Stopping Power Version (1=2011, 0=2011)
  0 
