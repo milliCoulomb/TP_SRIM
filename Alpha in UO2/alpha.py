@@ -2,26 +2,6 @@ import numpy as np
 from srim.output import Results
 import os
 import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
-
-linestyles = lss = [
-    ('solid', (0, ())),
-
-    # ('loosely dotted', (0, (1, 10))),
-    ('dotted', (0, (1, 1))),
-    ('densely dotted', (0, (1, 1))),
-
-    # ('loosely dashed', (0, (5, 10))),
-    ('dashed', (0, (5, 5))),
-    ('densely dashed', (0, (5, 1))),
-
-    ('loosely dashdotted', (0, (3, 10, 1, 10))),
-    ('dashdotted', (0, (3, 5, 1, 5))),
-    ('densely dashdotted', (0, (3, 1, 1, 1))),
-
-    ('dashdotdotted', (0, (3, 5, 1, 5, 1, 5))),
-    ('loosely dashdotdotted', (0, (3, 10, 1, 10, 1, 10))),
-    ('densely dashdotdotted', (0, (3, 1, 1, 1, 1, 1)))]
 
 plt.rcParams.update({'font.size': 14})
 N = 10000
@@ -31,11 +11,6 @@ modify_range = False
 modify_coll = False
 res_path = os.getcwd()
 new_path = res_path + '\srim_output'
-# print(res_path)
-# print('C:\\Users\\Mathis\\Desktop\\TP_SRIM\\Alpha in UO2\\srim_output')
-# print(new_path)
-# print(res_path+'\srim_output')
-# data = Results('C:\\Users\\Mathis\\Desktop\\TP_SRIM\\Alpha in UO2\\srim_output')
 data = Results(new_path)
 
 
@@ -45,10 +20,10 @@ def plot_ioniz(res):
     """
     ioniz = res.ioniz
     fig, ax = plt.subplots()
-    ax.set_xlabel(r'Depth ($\AA$)')
+    ax.set_xlabel(r'Depth ($\mu$m)')
     ax.set_ylabel(r'eV/$\AA$')
-    ax.plot(ioniz.depth, ioniz.ions, label='Ionization from Ions')
-    ax.plot(ioniz.depth, ioniz.recoils, label='Ionization from Recoils')
+    ax.plot(ioniz.depth / 1e+4, ioniz.ions, label='Ionization from Ions')
+    ax.plot(ioniz.depth / 1e+4, ioniz.recoils, label='Ionization from Recoils')
     plt.legend()
     plt.tight_layout()
     fig.savefig('ionization.pdf')
@@ -61,9 +36,9 @@ def plot_etorecoils(res):
     """
     etorecoils = res.etorecoils
     fig, ax = plt.subplots()
-    ax.set_xlabel(r'Depth ($\AA$)')
+    ax.set_xlabel(r'Depth ($\mu$m)')
     ax.set_ylabel(r'eV/$\AA$')
-    ax.plot(etorecoils.depth, etorecoils.ions, label='Energy from Ions')
+    ax.plot(etorecoils.depth / 1e+4, etorecoils.ions, label='Energy from Ions')
     plt.legend()
     plt.tight_layout()
     fig.savefig('etorecoils.pdf')
@@ -77,9 +52,9 @@ def plot_range(res, fluence, mod):
     if mod:
         range = res.range
         fig, ax = plt.subplots()
-        ax.set_xlabel(r'Depth ($\AA$)')
+        ax.set_xlabel(r'Depth ($\mu$m)')
         ax.set_ylabel(r'Atoms/cm3 / Atoms / cm2')
-        ax.plot(range.depth, range.ions, label='Ions range')
+        ax.plot(range.depth / 1e+4, range.ions, label='Ions range')
         plt.legend()
         plt.tight_layout()
         fig.savefig('range.pdf')
@@ -87,9 +62,9 @@ def plot_range(res, fluence, mod):
     else:
         range = res.range
         fig, ax = plt.subplots()
-        ax.set_xlabel(r'Depth ($\AA$)')
+        ax.set_xlabel(r'Depth ($\mu$m)')
         ax.set_ylabel(r'He/cm3')
-        ax.plot(range.depth, range.ions * fluence, label='Concentration of He')
+        ax.plot(range.depth / 1e+4, range.ions * fluence, label='Concentration of He')
         print("Max of concentration of He = "+"{:e}".format(np.max(range.ions * fluence))+" cm3")
         plt.legend()
         plt.tight_layout()
@@ -104,10 +79,10 @@ def plot_collision(res, fluence, c, mod):
     if mod:
         vacancies = res.vacancy
         fig, ax = plt.subplots()
-        ax.set_xlabel(r'Depth ($\AA$)')
+        ax.set_xlabel(r'Depth ($\mu$m)')
         ax.set_ylabel(r'Number/$\AA$')
-        ax.plot(vacancies.depth, vacancies.knock_ons, label='Knock-ons')
-        ax.plot(vacancies.depth, vacancies.vacancies, label='Vacancies')
+        ax.plot(vacancies.depth / 1e+4, vacancies.knock_ons, label='Knock-ons')
+        ax.plot(vacancies.depth / 1e+4, vacancies.vacancies, label='Vacancies')
         plt.legend()
         plt.tight_layout()
         fig.savefig('collisions.pdf')
@@ -115,10 +90,10 @@ def plot_collision(res, fluence, c, mod):
     else:
         vacancies = res.vacancy
         fig, ax = plt.subplots()
-        ax.set_xlabel(r'Depth ($\AA$)')
+        ax.set_xlabel(r'Depth ($\mu$m)')
         ax.set_ylabel(r'DPA')
-        DPA = vacancies.knock_ons * fluence * 1e+8 / c
-        ax.plot(vacancies.depth, DPA, label='Atoms displaced')
+        DPA = (vacancies.knock_ons + vacancies.vacancies.sum(axis=1)) * fluence * 1e+8 / c
+        ax.plot(vacancies.depth / 1e+4, DPA, label='Atoms displaced')
         print("Max of DPA is "+str(np.max(DPA)))
         print("At ten nanometers "+str(DPA[1]))
         # ax.plot(vacancies.depth, vacancies.vacancies, label='Vacancies')
