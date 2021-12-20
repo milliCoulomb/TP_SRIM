@@ -66,8 +66,8 @@ def plot_range(res):
     """
     range = res.range
     fig, ax = plt.subplots()
-    ax.set_xlabel(r'Depth $\AA$)')
-    ax.set_ylabel(r'Number')
+    ax.set_xlabel(r'Depth ($\AA$)')
+    ax.set_ylabel(r'Atoms/cm3 / Atoms / cm2')
     ax.plot(range.depth, range.ions, label='Ions range')
     plt.legend()
     plt.tight_layout()
@@ -79,7 +79,7 @@ def plot_collision(res):
     """
     Plot the collision events graph.
     """
-    vacancies = res.vacancies
+    vacancies = res.vacancy
     fig, ax = plt.subplots()
     ax.set_xlabel(r'Depth ($\AA$)')
     ax.set_ylabel(r'Number/$\AA$')
@@ -87,7 +87,7 @@ def plot_collision(res):
     ax.plot(vacancies.depth, vacancies.vacancies, label='Vacancies')
     plt.legend()
     plt.tight_layout()
-    fig.savefig('range.pdf')
+    fig.savefig('collisions.pdf')
     plt.close(fig)
 
 
@@ -95,3 +95,4 @@ def plot_collision(res):
 plot_ioniz(data)
 plot_etorecoils(data)
 plot_range(data)
+plot_collision(data)
