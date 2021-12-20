@@ -24,7 +24,9 @@ linestyles = lss = [
     ('densely dashdotdotted', (0, (3, 1, 1, 1, 1, 1)))]
 
 plt.rcParams.update({'font.size': 14})
-
+N = 10000
+fluence = 1e+16 #cm-2
+modify_range = True
 res_path = os.path.realpath(__file__)
 # print(res_path+'\srim_output')
 data = Results('C:\\Users\\Mathis\\Desktop\\TP_SRIM\\Alpha in UO2\\srim_output')
@@ -60,19 +62,30 @@ def plot_etorecoils(res):
     plt.close(fig)
 
 
-def plot_range(res):
+def plot_range(res, fluence, mod):
     """
     Plot the distribution of incorporated projectiles.
     """
-    range = res.range
-    fig, ax = plt.subplots()
-    ax.set_xlabel(r'Depth ($\AA$)')
-    ax.set_ylabel(r'Atoms/cm3 / Atoms / cm2')
-    ax.plot(range.depth, range.ions, label='Ions range')
-    plt.legend()
-    plt.tight_layout()
-    fig.savefig('range.pdf')
-    plt.close(fig)
+    if mod:
+        range = res.range
+        fig, ax = plt.subplots()
+        ax.set_xlabel(r'Depth ($\AA$)')
+        ax.set_ylabel(r'Atoms/cm3 / Atoms / cm2')
+        ax.plot(range.depth, range.ions, label='Ions range')
+        plt.legend()
+        plt.tight_layout()
+        fig.savefig('range.pdf')
+        plt.close(fig)
+    else:
+        range = res.range
+        fig, ax = plt.subplots()
+        ax.set_xlabel(r'Depth ($\AA$)')
+        ax.set_ylabel(r'He/cm3')
+        ax.plot(range.depth, range.ions * fluence, label='Concentration of He')
+        plt.legend()
+        plt.tight_layout()
+        fig.savefig('range.pdf')
+        plt.close(fig)
 
 
 def plot_collision(res):
@@ -91,8 +104,14 @@ def plot_collision(res):
     plt.close(fig)
 
 
+Rp = 903.2e+2 / 1e+4
+std_Rp = 465.7e+1 / 1e+4
+#mean_range = np.mean(data.range)
+#std_range = np.std(data.range)
+err = std_Rp / np.sqrt(N)
+print('Range of the projectile in matter, Rp='+"{:e}".format(Rp)+"+-"+"{:e}".format(err)+" micrometers")
 
 plot_ioniz(data)
 plot_etorecoils(data)
-plot_range(data)
+plot_range(data, fluence, modify_range)
 plot_collision(data)
