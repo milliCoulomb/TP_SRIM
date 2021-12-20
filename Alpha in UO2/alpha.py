@@ -29,9 +29,15 @@ fluence = 1e+16 #cm-2
 density = 7.332E+22 # atoms/cm3
 modify_range = False
 modify_coll = False
-res_path = os.path.realpath(__file__)
+res_path = os.getcwd()
+new_path = res_path + '\srim_output'
+# print(res_path)
+# print('C:\\Users\\Mathis\\Desktop\\TP_SRIM\\Alpha in UO2\\srim_output')
+# print(new_path)
 # print(res_path+'\srim_output')
-data = Results('C:\\Users\\Mathis\\Desktop\\TP_SRIM\\Alpha in UO2\\srim_output')
+# data = Results('C:\\Users\\Mathis\\Desktop\\TP_SRIM\\Alpha in UO2\\srim_output')
+data = Results(new_path)
+
 
 def plot_ioniz(res):
     """
