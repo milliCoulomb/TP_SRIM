@@ -26,7 +26,9 @@ linestyles = lss = [
 plt.rcParams.update({'font.size': 14})
 N = 10000
 fluence = 1e+16 #cm-2
+density = 7.332E+22 # atoms/cm3
 modify_range = False
+modify_coll = False
 res_path = os.path.realpath(__file__)
 # print(res_path+'\srim_output')
 data = Results('C:\\Users\\Mathis\\Desktop\\TP_SRIM\\Alpha in UO2\\srim_output')
@@ -82,27 +84,39 @@ def plot_range(res, fluence, mod):
         ax.set_xlabel(r'Depth ($\AA$)')
         ax.set_ylabel(r'He/cm3')
         ax.plot(range.depth, range.ions * fluence, label='Concentration of He')
+        print("Max of concentration of He = "+"{:e}".format(np.max(range.ions * fluence))+" cm3")
         plt.legend()
         plt.tight_layout()
         fig.savefig('range.pdf')
         plt.close(fig)
 
 
-def plot_collision(res):
+def plot_collision(res, fluence, c, mod):
     """
     Plot the collision events graph.
     """
-    vacancies = res.vacancy
-    fig, ax = plt.subplots()
-    ax.set_xlabel(r'Depth ($\AA$)')
-    ax.set_ylabel(r'Number/$\AA$')
-    ax.plot(vacancies.depth, vacancies.knock_ons, label='Knock-ons')
-    ax.plot(vacancies.depth, vacancies.vacancies, label='Vacancies')
-    plt.legend()
-    plt.tight_layout()
-    fig.savefig('collisions.pdf')
-    plt.close(fig)
-
+    if mod:
+        vacancies = res.vacancy
+        fig, ax = plt.subplots()
+        ax.set_xlabel(r'Depth ($\AA$)')
+        ax.set_ylabel(r'Number/$\AA$')
+        ax.plot(vacancies.depth, vacancies.knock_ons, label='Knock-ons')
+        ax.plot(vacancies.depth, vacancies.vacancies, label='Vacancies')
+        plt.legend()
+        plt.tight_layout()
+        fig.savefig('collisions.pdf')
+        plt.close(fig)
+    else:
+        vacancies = res.vacancy
+        fig, ax = plt.subplots()
+        ax.set_xlabel(r'Depth ($\AA$)')
+        ax.set_ylabel(r'DPA')
+        ax.plot(vacancies.depth, vacancies.knock_ons * fluence * 1e+8 / c, label='Atoms displaced')
+        # ax.plot(vacancies.depth, vacancies.vacancies, label='Vacancies')
+        plt.legend()
+        plt.tight_layout()
+        fig.savefig('collisions.pdf')
+        plt.close(fig)
 
 Rp = 903.2e+2 / 1e+4
 std_Rp = 465.7e+1 / 1e+4
@@ -114,4 +128,4 @@ print('Range of the projectile in matter, Rp='+"{:e}".format(Rp)+"+-"+"{:e}".for
 plot_ioniz(data)
 plot_etorecoils(data)
 plot_range(data, fluence, modify_range)
-plot_collision(data)
+plot_collision(data, fluence, density, modify_coll)
