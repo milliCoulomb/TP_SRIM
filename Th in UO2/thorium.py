@@ -24,7 +24,11 @@ linestyles = lss = [
     ('densely dashdotdotted', (0, (3, 1, 1, 1, 1, 1)))]
 
 plt.rcParams.update({'font.size': 14})
-
+N = 10000
+fluence = 1e+16 #cm-2
+density = 7.332E+22 # atoms/cm3
+modify_range = False
+modify_coll = False
 res_path = os.path.realpath(__file__)
 # print(res_path+'\srim_output')
 data = Results('C:\\Users\\Mathis\\Desktop\\TP_SRIM\\Th in UO2\\srim_output')
@@ -60,39 +64,71 @@ def plot_etorecoils(res):
     plt.close(fig)
 
 
-def plot_range(res):
+def plot_range(res, fluence, mod):
     """
     Plot the distribution of incorporated projectiles.
     """
-    range = res.range
-    fig, ax = plt.subplots()
-    ax.set_xlabel(r'Depth $\AA$)')
-    ax.set_ylabel(r'Atoms/cm3 / Atoms / cm2')
-    ax.plot(range.depth, range.ions, label='Ions range')
-    plt.legend()
-    plt.tight_layout()
-    fig.savefig('range.pdf')
-    plt.close(fig)
+    if mod:
+        range = res.range
+        fig, ax = plt.subplots()
+        ax.set_xlabel(r'Depth ($\AA$)')
+        ax.set_ylabel(r'Atoms/cm3 / Atoms / cm2')
+        ax.plot(range.depth, range.ions, label='Ions range')
+        plt.legend()
+        plt.tight_layout()
+        fig.savefig('range.pdf')
+        plt.close(fig)
+    else:
+        range = res.range
+        fig, ax = plt.subplots()
+        ax.set_xlabel(r'Depth ($\AA$)')
+        ax.set_ylabel(r'Th/cm3')
+        ax.plot(range.depth, range.ions * fluence, label='Concentration of Th')
+        print("Max of concentration of Th = "+"{:e}".format(np.max(range.ions * fluence))+" cm3")
+        plt.legend()
+        plt.tight_layout()
+        fig.savefig('range.pdf')
+        plt.close(fig)
 
 
-def plot_collision(res):
+def plot_collision(res, fluence, c, mod):
     """
     Plot the collision events graph.
     """
-    vacancies = res.vacancy
-    fig, ax = plt.subplots()
-    ax.set_xlabel(r'Depth ($\AA$)')
-    ax.set_ylabel(r'Number/$\AA$')
-    ax.plot(vacancies.depth, vacancies.knock_ons, label='Knock-ons')
-    ax.plot(vacancies.depth, vacancies.vacancies, label='Vacancies')
-    plt.legend()
-    plt.tight_layout()
-    fig.savefig('collisions.pdf')
-    plt.close(fig)
+    if mod:
+        vacancies = res.vacancy
+        fig, ax = plt.subplots()
+        ax.set_xlabel(r'Depth ($\AA$)')
+        ax.set_ylabel(r'Number/$\AA$')
+        ax.plot(vacancies.depth, vacancies.knock_ons, label='Knock-ons')
+        ax.plot(vacancies.depth, vacancies.vacancies, label='Vacancies')
+        plt.legend()
+        plt.tight_layout()
+        fig.savefig('collisions.pdf')
+        plt.close(fig)
+    else:
+        vacancies = res.vacancy
+        fig, ax = plt.subplots()
+        ax.set_xlabel(r'Depth ($\AA$)')
+        ax.set_ylabel(r'DPA')
+        DPA = vacancies.knock_ons * fluence * 1e+8 / c
+        ax.plot(vacancies.depth, DPA, label='Atoms displaced')
+        print("Max of DPA is "+str(np.max(DPA)))
+        print("At ten nanometers "+str(DPA[1]))
+        # ax.plot(vacancies.depth, vacancies.vacancies, label='Vacancies')
+        plt.legend()
+        plt.tight_layout()
+        fig.savefig('collisions.pdf')
+        plt.close(fig)
 
-
+Rp = 142.7 / 1e+4
+std_Rp = 682.8e-1 / 1e+4
+#mean_range = np.mean(data.range)
+#std_range = np.std(data.range)
+err = std_Rp / np.sqrt(N)
+print('Range of the projectile in matter, Rp='+"{:e}".format(Rp)+"+-"+"{:e}".format(err)+" micrometers")
 
 plot_ioniz(data)
 plot_etorecoils(data)
-plot_range(data)
-plot_collision(data)
+plot_range(data, fluence, modify_range)
+plot_collision(data, fluence, density, modify_coll)
