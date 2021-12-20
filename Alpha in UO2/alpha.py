@@ -111,7 +111,10 @@ def plot_collision(res, fluence, c, mod):
         fig, ax = plt.subplots()
         ax.set_xlabel(r'Depth ($\AA$)')
         ax.set_ylabel(r'DPA')
-        ax.plot(vacancies.depth, vacancies.knock_ons * fluence * 1e+8 / c, label='Atoms displaced')
+        DPA = vacancies.knock_ons * fluence * 1e+8 / c
+        ax.plot(vacancies.depth, DPA, label='Atoms displaced')
+        print("Max of DPA is "+str(np.max(DPA)))
+        print("At ten nanometers "+str(DPA[1]))
         # ax.plot(vacancies.depth, vacancies.vacancies, label='Vacancies')
         plt.legend()
         plt.tight_layout()
