@@ -5,27 +5,27 @@
 =======================================
 ====== TRIM Calc.= Th(70 keV) ==> UO2(  500 A) ===============================
 ------------------------------------------------------------------------------
-Ion = Th (90)   Ion Mass= 234.0380
-Energy  = 7000000.E-05 keV
+Ion = Th (90)   Ion Mass= 234,0380
+Energy  = 7000000,E-05 keV
 Ion Angle to Surface = 0 degrees
 ============= TARGET MATERIAL ======================================
   Layer # 1 - UO2
-  Layer # 1 - Bottom Depth=     5.E+02 A
+  Layer # 1 - Bottom Depth=     5,E+02 A
   Layer # 1- Density = 7.332E22 atoms/cm3 = 10.96 g/cm3
   Layer # 1-  U = 33.3 Atomic Percent = 88.1 Mass Percent
   Layer # 1-  O = 66.6 Atomic Percent = 11.8 Mass Percent
 ====================================================================
 Target energies for target atom =  U
-    Displacement = 40 eV. Binding = 3 eV. Surface = 5.42 eV
+    Displacement = 40 eV, Binding = 3 eV, Surface = 5,42 eV
 Target energies for target atom =  O
-    Displacement = 20 eV. Binding = 3 eV. Surface = 2 eV
+    Displacement = 20 eV, Binding = 3 eV, Surface = 2 eV
 ====================================================================
-Depth Range of Tabulated Data=  000000.E+00  -  500000.E-03  Angstroms
+Depth Range of Tabulated Data=  000000,E+00  -  500000,E-03  Angstroms
 ====================================================================
 Total Ions calculated =  010000
-Average Range         =   14270.E-02 Angstroms
-Average Straggling    =   68279.E-03 Angstroms
-Average Vacancy/Ion   =   10380.E-01
+Average Range         =   14270,E-02 Angstroms
+Average Straggling    =   68279,E-03 Angstroms
+Average Vacancy/Ion   =   10380,E-01
 ====================================================================
 Total Backscattered Ions=  78 
 Total Transmitted Ions  =  0 
