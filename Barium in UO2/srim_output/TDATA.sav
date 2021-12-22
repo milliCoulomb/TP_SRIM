@@ -1,0 +1,42 @@
+============================================================
+                 Saved DATA File for TRIM                   
+       Changes will Modify Continued TRIM Calculations      
+============================================================
+TRIM  Version  Number  /  Calculation Name 
+"SRIM-2013.00"    "Ba (95000) into UO2                     "
+ION DATA:At.Numb, Mass(amu), Energy (keV) , Angle to Target
+          56     137,9050  6,7000E+04    00,0
+ION NUMB: Current, Total, AutoSave, Transmitted, Backscattered 
+        2000 2000  500    0    1
+CURRENT ION: Energy(eV),  Depth (X,Y,Z), Trajectory: Cos(X,Y,Z), Sin(X)
+2,07392E-01 6,70114E+04 8,28855E+03 1,55173E+04 -0,418991 -0,581491 -0,697363 0,907990
+ION AVGS:  Range,      Straggling,   Vacancies/Ion
+        6,1457E+04   7,7025E+03   9,6051E+04
+ION SUMS:  Range,Straggling,(Vacancies,Replacements,Interstitials)/Ang.
+1,22852E+008  7,66873E+012  4,84682E+017  3,09548E+022  1,92101E+005  9,07546E+003  2,01175E+005  1,94500E+003
+Ion Y-Z Lateral Data :  Range, Straggling, Kurtosis, Radial Dev.
+1,73555E+007  2,33593E+011  2,63668E+007  4,39177E+011
+1,31900E+004  6,76188E+003  8,68210E+003  1,08099E+004  1,34023E+002
+Cascade Type, FileFLAGS: Sputter, Ranges, Backscatter, Transmit, Collisions, Random Seeds(2)
+  2 1 1 1 1 1 0 461554389 1775001554
+TGT DATA: ------- Numb.Elements, Numb.Layers -----------------
+                       2           1
+TGT DATA: Atomic Numb, Mass,  Disp., Binding, Surf. Energy(eV)
+ 92           238,0300      40,00         3,00          5,42
+ 8            15,9990       20,00         3,00          2,00
+TGT Layers: Name      Width(A),    Depth(A), Density(g/cm3), Stoichiometry (Tgt.Atoms)
+    "UO2" 1,0000E+05        1,0000E+05    1,0960E+01 3,33333E-01 6,66667E-01
+Lowest E,  Ed(min)  (eV)
+ 1             20 
+Total Sputtered Atoms and Energy (eV)     (Target Atoms 1 - 2  )
+    4,220E+002 9,239E+006    1,523E+003 2,897E+006 
+Plot Display Start Depth (A), End Depth(A), Depth Resolution (Ang.)
+ 0             100000        1000 
+Plotting Colors from TRIM.CFG
+ 16777215      255           6             16777215      255           16777215      16777215      16777215      255           8388608       65280         16776960 
+ 16777215  4227327  15982183  16744703  16777088  13159423  16760769  8421376  6422724  8388736  4755857  9408399  16777215 
+ 255  837122  16417654  12519886  13814035  9673727  16711680  65280  12615935  16716287  8700353  12566463  255 
+Collision Plots and Plot Positions
+ 1             0             0             0             0             200           0             0             0             162           0             0 
+Animated Collison Plot Position
+ 2865          2935          3005          3075 

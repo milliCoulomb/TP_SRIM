@@ -1,0 +1,41 @@
+====== Ba (95000) into UO2                      =======
+        SRIM-2013.00
+=======================================
+      Data  of  TRIM  Calculation      
+=======================================
+====== TRIM Calc.= Ba(67 MeV) ==> UO2(  10 um) ===============================
+------------------------------------------------------------------------------
+Ion = Ba (56)   Ion Mass= 137,9050
+Energy  = 6700000,E-02 keV
+Ion Angle to Surface = 0 degrees
+============= TARGET MATERIAL ======================================
+  Layer # 1 - UO2
+  Layer # 1 - Bottom Depth=     1,E+05 A
+  Layer # 1- Density = 7.332E22 atoms/cm3 = 10.96 g/cm3
+  Layer # 1-  U = 33.3 Atomic Percent = 88.1 Mass Percent
+  Layer # 1-  O = 66.6 Atomic Percent = 11.8 Mass Percent
+====================================================================
+Target energies for target atom =  U
+    Displacement = 40 eV, Binding = 3 eV, Surface = 5,42 eV
+Target energies for target atom =  O
+    Displacement = 20 eV, Binding = 3 eV, Surface = 2 eV
+====================================================================
+Depth Range of Tabulated Data=  000000,E+00  -  100000,E+00  Angstroms
+====================================================================
+Total Ions calculated =  002000
+Average Range         =   61457,E+00 Angstroms
+Average Straggling    =   77025,E-01 Angstroms
+Average Vacancy/Ion   =   96051,E+00
+====================================================================
+Total Backscattered Ions=  1 
+Total Transmitted Ions  =  0 
+====================================================================
+See files SRIM Outputs\*.txt for tables :
+   TDATA.txt    -- Details of the calculation.
+   RANGE.txt    -- Final distribution of Ions/Recoils
+   VACANCY.txt  -- Distribution of Vacancies
+   IONIZ.txt    -- Distribution of Ionization
+   PHONON.txt   -- Distribution of Phonons
+   E2RECOIL.txt -- Energy transferred to recoils
+   NOVAC.txt    -- Replacement collisions
+   LATERAL.txt  -- Lateral Spread of Ions
