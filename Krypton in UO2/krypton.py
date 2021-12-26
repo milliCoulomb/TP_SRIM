@@ -51,9 +51,9 @@ def plot_ioniz(res):
     ioniz = res.ioniz
     fig, ax = plt.subplots()
     ax.set_xlabel(r'Depth ($\mu$m)')
-    ax.set_ylabel(r'eV/$\AA$')
-    ax.plot(ioniz.depth / 1e+4, ioniz.ions, label='Ionization from Ions')
-    ax.plot(ioniz.depth / 1e+4, ioniz.recoils, label='Ionization from Recoils')
+    ax.set_ylabel(r'keV/$\AA$')
+    ax.plot(ioniz.depth / 1e+4, ioniz.ions / 1e+3, label='Ionization from Ions')
+    ax.plot(ioniz.depth / 1e+4, ioniz.recoils / 1e+3, label='Ionization from Recoils')
     plt.legend()
     plt.tight_layout()
     fig.savefig('ionization.pdf')
